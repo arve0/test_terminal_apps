@@ -1,0 +1,32 @@
+{
+  "name": "test_terminal_apps",
+  "version": "1.0.0",
+  "description": "test console applications with node",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava index.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arve0/test_terminal_apps.git"
+  },
+  "keywords": [
+    "terminal",
+    "console",
+    "output",
+    "input",
+    "stdout",
+    "stdin",
+    "test",
+    "functional"
+  ],
+  "author": "Arve Seljebu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arve0/test_terminal_apps/issues"
+  },
+  "homepage": "https://github.com/arve0/test_terminal_apps#readme",
+  "devDependencies": {
+    "ava": "^0.14.0"
+  }
+}
