@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/arve0/test_terminal_apps#readme",
   "devDependencies": {
-    "ava": "^0.14.0"
+    "ava": "^0.14.0",
+    "tty-test-helper": "^0.1.1"
   }
 }

@@ -2,34 +2,38 @@
 This boilerplate shows how you can test console programs with [ava](https://github.com/sindresorhus/ava).
 
 Testing is done by forking a child process, then listening to the child's
-`stdout` and sending characters to the child's `stdin`. 
+`stdout` and sending characters to the child's `stdin` with help from [tty-test-helper](https://github.com/arve0/tty-test-helper).
 
 You may test for:
 
 - Initial output
 - Response in output to particular input
 - If child process is alive
-- Changes in file system
 - Etc..
 
 ## What does the tests look like?
-This is one of the tests for [index.js](index.js), a terminal app that writes
-`.` to `stdout` upon input.
+Test a terminal app that writes `.` to `stdout` upon input:
 
 ```js
 test('any keypress gives . in terminal', async (t) => {
-	const { stdout, child } = t.context
+	const { next, stdin } = t.context
 	// get initial output
-	let output = await waitFor(stdout)
+	// default timeout is 1000 ms, which will throw and fail the test
+	let output = await next()
 
+  // start listening for next output
+	output = next()
 	// send a character
-	child.stdin.write('a')
-	output = await waitFor(stdout)
+	stdin.write('a')
+	// wait until we get the output
+	output = await output
 	// expect the output to be '.'
 	t.true(output === '.')
 
-	child.stdin.write('1')
-	output = await waitFor(stdout)
+	// do once more with another character
+	output = next()
+	stdin.write('1')
+	output = await output
 	t.true(output === '.')
 })
 ```
@@ -54,7 +58,7 @@ npm test
 I have these plugins installed globally.
 
 ```sh
-npm i eslint eslint-config-standard eslint-plugin-promise eslint-plugin-standard
+npm i -g eslint eslint-config-standard eslint-plugin-promise eslint-plugin-standard
 ```
 
 `jsconfig.conf`:
