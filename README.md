@@ -37,7 +37,7 @@ test('any keypress gives . in terminal', async (t) => {
 	t.true(output === '.')
 })
 ```
-For more details, see [index.test.js](index.test.js).
+For more details, see [index.js](index.js) and [index.test.js](index.test.js).
 
 ## Usage
 ```sh
